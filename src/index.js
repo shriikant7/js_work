@@ -7,8 +7,6 @@ app.innerHTML = `
 `;
 const abc = document.querySelector("#ulelem");
 console.log(abc);
-const hai = "hi im shri";
-app.innerHTML += hai;
 
 /*function createElement({ name, type }) {
   const newele = document.createElement("label");
