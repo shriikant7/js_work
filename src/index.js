@@ -5,9 +5,43 @@ app.innerHTML = `
 <h1>Javascript Basic</h1>
 <div id = 'ulelem'> click </div>
 `;
-const abc = document.querySelector("#ulelem");
-console.log(abc);
+const myInformTion = ["sarang jain", 9405034908, "frontend trainer"];
+const myInformTionRef = myInformTion;
+console.log(myInformTion);
+console.log(myInformTionRef);
+myInformTion.push("married");
+myInformTionRef.push("yes it is me");
+const shri = Array("hi", "there", "noway");
+const kailas = new Array("yes", "bro ");
+console.log(shri);
+console.log(kailas);
+const orabba = [
+  "names",
+  23,
+  ["dssd", "dsds", "sfsfs"],
+  false,
+  null,
+  {},
+  () => {
+    console.log("aisehi");
+  },
+];
+console.log(orabba);
+const jkdsds = [
+  ["ddf", "fdas", "vhg"],
+  ["hyj", "fafs", "fafeg"],
+];
+let jscollection = jkdsds[0];
+console.log(jscollection[1]);
+const newName = [
+  ["shrikant", "kailas", "mahesh", "saiua"],
+  ["rima", "roma"],
+  ["sanam", " yetona"],
+  ["haina", "hot"],
+];
+let courses = ["angular", "react", "javascript", "typescript"];
 
+console.log(courses.includes("javascript"));
 /*function createElement({ name, type }) {
   const newele = document.createElement("label");
   const newele2 = document.createElement("input");
