@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JS Basic</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo">
+        <p class="logo-name">Modern Javascript</p>
+      </div>
+    </header>
+    <div id="app"></div>
+    <script>
+      /*const div = document.getElementById("app");
+      console.log(div);
+      window.addEventListener("DOMContentLoaded", () => {
+        console.log("created");
+      });
+      window.addEventListener("Load", () => {
+        console.log("hello");
+      });*/
+
+      // behaviour of this ,
+
+      /*
+
+                 *** in case of "use strict mode" your this keyword point to undefined , from the function. *****
+
+                it's rule in normal function it will point window object, in case of method it will point the object that method is associated.
+                1) this inside Function point to ----> window object
+                2) this inside the method --> window object
+                3) arrow fn does not have its own this behavior it takes from just previous line , means in which context it is written.
+                4) if function written inside the method still 1 and 2 rule will be applied, arrow function introduced to solve this problem only
+               */
+
+      /*
+                        // function as a object (call , apply and bind)
+                        // you get conditions many times, where you use function as a object
+
+                            /*
+                        we have three methos indside Function prototype
+                          1) call , apply , bind
+
+                          THis is very poweful , we can change the context or this variable , we can decide for which context we want to call the function
+
+                          1) call --> invoke function immediatly , first agument takes a this or context variable , we pass parameter freely
+                          2) apply --> invoke function immediatly, first agument takes a this or context variable , we pass parameter in array form
+                          3) bind --> it will not invoke immediatly will give a new defination
+                          , and you can invoke new defination later ,first agument takes a this context variable
+                        */
+
+      /*
+              // behaviour of this ,
+
+              console.log(this); // window object
+
+              function checkThis() {
+                console.log(this); // window object
+              }
+
+              var checkthis2 = function () {
+                console.log(this); // window object
+              };
+
+              console.log(this);
+
+              var check3 = () => {
+                console.log(this); // window object
+              };
+
+              checkThis();
+              checkthis2();
+              check3();
+
+              console.log("=======================================");
+
+              var obj = {
+                name: "sarang jain",
+                age: 33,
+                getInfo: function () {
+                  console.log(this); // it's own object
+                  console.log(
+                    "My information name is " + this.name + " and age is" + this.age
+                  );
+
+                  console.log("====function inside the method ===========");
+                  // function inside the method
+                  function checkthisInsideMethod() {
+                    console.log(this); // o/p ---> window fn
+                    console.log(
+                      "My information name is " + this.name + " and age is" + this.age
+                    );
+                  }
+                  checkthisInsideMethod();
+
+                  console.log("====arrow function inside the method ===========");
+
+                  // arrow function insid ethe method
+                  console.log("=========>", this);
+
+                  var checkArrowInsidethemethod = () => {
+                    console.log(this); // it's own object
+                  };
+
+                  checkArrowInsidethemethod();
+                },
+              };
+
+              obj.getInfo();
+
+
+        =========================================
+
+
+        */
+
+      /*
+                  console.dir(Function);
+                  console.dir(Function.prototype);
+
+                  // == using call , apply and bind ====================
+
+                  function sayHello() {
+                    console.log("HI");
+                  }
+
+                  sayHello(this);
+                  sayHello.call(this);
+                  sayHello.apply(this);
+                  var newDefinationoffnSayHello = sayHello.bind();
+                  // console.log(newDefinationoffnSayHello);
+                  newDefinationoffnSayHello();
+
+
+
+                  console.log("========================================");
+                  function add(a, b) {
+                    console.log(a + b);
+                  }
+                  add(10, 20);
+                  add.call(this, 10, 20);
+                  add.apply(this, [10, 20]);
+
+                  var addnewef = add.bind(this, 10, 20);
+                  // console.log(addnewef);
+
+                  addnewef();
+
+                  console.log(
+                    "==============this variable and context=========================="
+                  );
+
+                  function checkThis() {
+                    console.log(this);
+                  }
+
+                  let myArray = [1, 2, 3];
+                  let myObj = { name: "sarang jain", age: 30 };
+                  let myString = "my name is sarang jain";
+                  let myBoolen = true;
+                  let myNumber = 5;
+
+                  checkThis();
+                  checkThis.call(this);
+                  checkThis.call(myArray);
+                  checkThis.call(myString);
+                  checkThis.call(myBoolen);
+                  checkThis.call(myNumber);
+
+                  console.log("============the uses of call apply bind ============");
+
+                  let sarangInformation = {
+                    name: "sarang",
+                    age: 33,
+                    getinfo: function (salary) {
+                      console.log("===> information ", this.name, this.age, salary);
+                    },
+                  };
+
+                  let rishiInformation = {
+                    name: "rishi",
+                    age: 25,
+                  };
+
+                  function getName() {
+                    console.log(this.name);
+                  }
+
+                  sarangInformation.getinfo(window, 30000);
+                  sarangInformation.getinfo.apply(rishiInformation, [40000]);
+
+                  getName.call(sarangInformation);
+                  getName.call(rishiInformation);
+
+                  console.log("=========================");
+
+                  let info = { name: "sarang" };
+                  let info1 = { name: "kk" };
+
+                  function giveInformation(age, isMarried) {
+                    console.log(this.name + " " + age + " " + isMarried);
+                  }
+
+                  giveInformation.call(info, 30, true);
+                  giveInformation.apply(info1, [30, true]);
+
+                  let newDefn = giveInformation.bind(info, 30, true);
+                  newDefn();
+
+                  console.log("=================");
+
+                  function iterateArray() {
+                    for (i = 0; i < this.length; i++) {
+                      console.log(this[i]);
+                    }
+                  }
+
+                  let arr = [1, 2, 3, 4, 5];
+                  let frindsName = ["sarang", "rishi", "amar"];
+
+                  iterateArray.call(arr);
+                  iterateArray.call(frindsName);
+
+                  */
+    </script>
+  </body>
+</html>
